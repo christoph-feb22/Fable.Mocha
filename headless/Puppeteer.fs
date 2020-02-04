@@ -66,6 +66,7 @@ let runTests (path: string) : Async<int> =
     let launchOptions = LaunchOptions()
     launchOptions.ExecutablePath <- browserFetcher.GetExecutablePath(BrowserFetcher.DefaultRevision)
     launchOptions.Headless <- true
+    launchOptions.Args <- [| "--no-sandbox" |]
 
     async {
         use! browser = Async.AwaitTask(Puppeteer.LaunchAsync(launchOptions))
